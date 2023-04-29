@@ -20,7 +20,8 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Own */
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
