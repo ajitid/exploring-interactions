@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import "./fonts.css";
 import "./index.css";
 
-import { App } from "./components/app.tsx";
+import { App } from "./pages/app.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
