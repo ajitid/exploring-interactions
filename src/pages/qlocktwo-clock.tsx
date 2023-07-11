@@ -16,24 +16,38 @@ export const QlocktwoClock = () => {
     return () => clearInterval(id);
   }, []);
 
-  const { hrsChars, minsChars } = getTime();
+  const { hrsChars, minsChars, discreteMins } = getTime();
 
   return (
-    <div className="min-h-screen bg-black grid place-items-center">
-      <div className={cn(css.clock, "text-2xl font-semibold uppercase")}>
-        {charsTable.map((c, i) => {
-          const matches = c === itIsChars[i] || c === minsChars[i] || c === hrsChars[i];
-          const color = c === hrsChars[i] ? "#008EF4" : "#ffffff";
-          return (
-            <motion.span initial={false} animate={{ color, opacity: matches ? 1 : 0.1 }} key={i}>
-              {c}
-            </motion.span>
-          );
-        })}
+    <div className="min-h-screen bg-black grid place-items-center pb-4">
+      <div>
+        <div className="flex justify-between">
+          <DiscreteMinsDot visible={discreteMins >= 1} />
+          <DiscreteMinsDot visible={discreteMins >= 2} />
+        </div>
+        <div className={cn(css.clock, "text-2xl font-semibold uppercase", "p-[30px]")}>
+          {charsTable.map((c, i) => {
+            const matches = c === itIsChars[i] || c === minsChars[i] || c === hrsChars[i];
+            const color = c === hrsChars[i] ? "#008EF4" : "#ffffff";
+            return (
+              <motion.span initial={false} animate={{ color, opacity: matches ? 1 : 0.1 }} key={i}>
+                {c}
+              </motion.span>
+            );
+          })}
+        </div>
+        <div className="flex justify-between">
+          <DiscreteMinsDot visible={discreteMins >= 4} />
+          <DiscreteMinsDot visible={discreteMins >= 3} />
+        </div>
       </div>
     </div>
   );
 };
+
+const DiscreteMinsDot = (props: { visible: boolean }) => (
+  <div className={cn(props.visible && "bg-white", "w-[5px] h-[5px] rounded-full")}></div>
+);
 
 const getMinutes = () => new Date().getMinutes();
 const getHours = () => new Date().getHours() % 12 || 12;
@@ -2077,7 +2091,8 @@ const everyHourJson = [
 ];
 
 const getTime = () => {
-  const mins = Math.floor(getMinutes() / 5);
+  const preciseMins = getMinutes();
+  const mins = Math.floor(preciseMins / 5);
   const hrs = getHours() + Number(mins > 6);
 
   const hrsChars = everyHourJson[(hrs - 1) % 12];
@@ -2087,5 +2102,5 @@ const getTime = () => {
     throw new Error("minChars or hrsChars is undefined");
   }
 
-  return { hrsChars, minsChars };
+  return { hrsChars, minsChars, discreteMins: preciseMins % 5 };
 };

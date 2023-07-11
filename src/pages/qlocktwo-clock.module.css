@@ -1,5 +1,5 @@
 .clock {
   display: grid;
-  grid-template-columns: repeat(11, 24px);
+  grid-template-columns: repeat(11, 29px);
   justify-items: center;
 }
