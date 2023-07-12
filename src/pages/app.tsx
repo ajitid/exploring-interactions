@@ -1,6 +1,7 @@
 import { Link, Route } from "wouter";
 import { HtcHd2HomeDock } from "./htc-hd2-home-dock";
 import { QlocktwoClock } from "./qlocktwo-clock";
+import { Playground } from "./playground";
 
 export function App() {
   return (
@@ -10,8 +11,9 @@ export function App() {
       <header></header>
       <main>
         <Route path="/" component={Home} />
-        <Route path="/htc-hd2-home-dock" component={HtcHd2HomeDock} />
         <Route path="/qlocktwo-clock" component={QlocktwoClock} />
+        <Route path="/htc-hd2-home-dock" component={HtcHd2HomeDock} />
+        <Route path="/pg" component={Playground} />
       </main>
     </div>
   );
