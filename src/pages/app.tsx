@@ -1,6 +1,6 @@
 import { Link, Route } from "wouter";
 import { HtcHd2HomeDock } from "./htc-hd2-home-dock";
-import { QlocktwoClock } from "./qlocktwo-clock";
+import { QlocktwoClock } from "./qlocktwo-clock/qlocktwo-clock";
 import { Playground } from "./playground";
 
 export function App() {
