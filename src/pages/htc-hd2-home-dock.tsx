@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import cn from "clsx";
 import useMeasure from "react-use-measure";
@@ -86,6 +86,20 @@ export const HtcHd2HomeDock = () => {
     );
   };
 
+  const [dragging, setDragging] = useState<"dragging" | "notDragging">("notDragging");
+  const previewVariants: Variants = {
+    dragging: {
+      backdropFilter: "blur(3px)",
+      filter: "blur(0px)",
+      display: "grid",
+    },
+    notDragging: {
+      backdropFilter: "blur(0px)",
+      filter: "blur(1px)",
+      display: "none",
+    },
+  };
+
   return (
     <div className="min-h-screen bg-black grid place-items-center">
       <div
@@ -94,6 +108,15 @@ export const HtcHd2HomeDock = () => {
           screenWidthClassname
         )}
       >
+        <div className="p-2">Selected app appears here</div>
+        <motion.div
+          variants={previewVariants}
+          animate={dragging}
+          // backdropFilter needs opacity to work
+          className="bg-stone-100 bg-opacity-50 h-full w-full top-0 absolute pb-12 place-items-center"
+        >
+          <SelectedIcon className="w-32 text-pink-900" />
+        </motion.div>
         <motion.div
           className="absolute bottom-0 bg-pink-300 flex"
           ref={dockRef}
@@ -117,6 +140,8 @@ export const HtcHd2HomeDock = () => {
             scrubWidthClassname
           )}
           style={{ x: scrubX }}
+          onDragStart={() => setDragging("dragging")}
+          onDragEnd={() => setDragging("notDragging")}
           drag="x"
           dragElastic={false}
           dragMomentum={false}

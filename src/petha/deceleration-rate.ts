@@ -1,4 +1,5 @@
 // Values obtained from https://medium.com/@esskeetit/scrolling-mechanics-of-uiscrollview-142adee1142c
+// and https://medium.com/@esskeetit/how-uiscrollview-works-e418adc47060
 // confirmed from https://stackoverflow.com/a/8711525
 // useful to calcuate projected position when used with `project`
 // smooth scroll, where it'll end and flick end stuff

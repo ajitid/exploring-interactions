@@ -1,4 +1,9 @@
-copy use-animated-height, use-bullet-time, use-flick-in-bounds (alex holacheck too has rubberBandIfOutOfBounds, but we might not need it as framer motion has inbuilt rubberbanding using inertia api https://twitter.com/dot_louis/status/1088402000688148480, check on the use case and add it), use-raf-info and use-velocity
+copy use-animated-height, use-bullet-time, use-flick-in-bounds (alex holacheck too has rubberBandIfOutOfBounds, but we might not need it as framer motion has inbuilt rubberbanding using inertia api (elasticity) https://twitter.com/dot_louis/status/1088402000688148480, check on the use case and add it
+// There's https://twitter.com/dot_louis/status/1088402000688148480
+// but I don't know if rubberbanding is available outside of framer-motion or not and
+// I don't know how it works either so I'm putting this in
+
+), use-raf-info and use-velocity
 react-flip-toolkit
 simpler way to calculate height for usetransition (list of elements, see discord, measures height)
 simpler usetransition hook

@@ -8,9 +8,8 @@ export function App() {
     <div
       className="min-h-screen antialiased break-words font-sans lining-nums" /* any global text or bg color here */
     >
-      <header></header>
+      <Route path="/" component={Home} />
       <main>
-        <Route path="/" component={Home} />
         <Route path="/qlocktwo-clock" component={QlocktwoClock} />
         <Route path="/htc-hd2-home-dock" component={HtcHd2HomeDock} />
         <Route path="/pg" component={Playground} />
@@ -21,9 +20,14 @@ export function App() {
 
 const Home = () => (
   <>
-    <h1 className="font-mono text-3xl">exploring interactions</h1>
-    <PageLink text="QLOCKTWO clock" link="/qlocktwo-clock" />
-    <PageLink text="Home dock for HTC HD2" link="/htc-hd2-home-dock" />
+    <header>
+      <h1 className="font-mono text-3xl">exploring interactions</h1>
+    </header>
+
+    <main>
+      <PageLink text="QLOCKTWO clock" link="/qlocktwo-clock" />
+      <PageLink text="Home dock for HTC HD2" link="/htc-hd2-home-dock" />
+    </main>
   </>
 );
 
