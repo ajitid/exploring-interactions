@@ -117,8 +117,10 @@ export const HtcHd2HomeDock = () => {
         >
           <SelectedIcon className="w-32 text-pink-900" />
         </motion.div>
+        {/* this height is the same as icons + padding height in the `map()` done right below */}
+        <div className="absolute bottom-0 h-[72px] bg-pink-300 w-full" />
         <motion.div
-          className="absolute bottom-0 bg-pink-300 flex"
+          className="absolute bottom-0 flex"
           ref={dockRef}
           style={{ x: dockWidth > SCREEN_WIDTH ? dockX : 0 }}
         >

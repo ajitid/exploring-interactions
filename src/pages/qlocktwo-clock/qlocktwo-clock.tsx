@@ -5,29 +5,6 @@ import cn from "clsx";
 
 import css from "./qlocktwo-clock.module.css";
 
-const colors = [
-  {
-    name: "black",
-    bg: "#000000",
-    fg: "#ffffff",
-    fgPrimary: "#008EF4",
-  },
-  // ^ the primary color doesn't tries to overcomes white, make sure happens below too
-  // also read color harmony and change fgPrimary of green and increase contrast/saturation of ping's fgPrimary
-  {
-    name: "green",
-    bg: "#15803d",
-    fg: "#ffffff",
-    fgPrimary: "#bef264",
-  },
-  {
-    name: "pink",
-    bg: "#831843",
-    fg: "#ffffff",
-    fgPrimary: "#fcd34d",
-  },
-];
-
 export const QlocktwoClock = () => {
   const [, _rerender] = useState({});
 
