@@ -103,12 +103,27 @@ const Ticker = <T extends HTMLElement = HTMLElement>({
   return (
     <div className="overflow-hidden">
       <motion.div initial={false} className="flex" style={{ x }}>
+        {/* Alternatively a React.Children.only + cloneElement could've been chosen to pass ref, but because the passed component is not ours */}
+        {/* we chose this instead as it makes explicit to the user of this component what needs to be done at their side. */}
         <Component ref={ref} />
         {repetitions}
       </motion.div>
     </div>
   );
 };
+
+function useWindowSize() {
+  const [size, setSize] = useState<[width: number, height: number]>([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
 
 const Text = forwardRef<HTMLDivElement>((_, ref) => {
   return (
@@ -127,16 +142,3 @@ const Colors = forwardRef<HTMLDivElement>((_, ref) => {
     </div>
   );
 });
-
-function useWindowSize() {
-  const [size, setSize] = useState<[width: number, height: number]>([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
-}

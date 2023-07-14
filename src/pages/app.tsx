@@ -3,6 +3,8 @@ import { HtcHd2HomeDock } from "./htc-hd2-home-dock";
 import { QlocktwoClock } from "./qlocktwo-clock/qlocktwo-clock";
 import { Playground } from "./playground";
 import { TickerPage } from "./ticker";
+import { BB10TextTransition } from "./bb10-text-transition/bb10-text-transition";
+import { TextShimmer } from "./text-shimmer/text-shimmer";
 
 export function App() {
   return (
@@ -14,6 +16,8 @@ export function App() {
         <Route path="/qlocktwo-clock" component={QlocktwoClock} />
         <Route path="/htc-hd2-home-dock" component={HtcHd2HomeDock} />
         <Route path="/ticker" component={TickerPage} />
+        <Route path="/bb10-text-transition" component={BB10TextTransition} />
+        <Route path="/text-shimmer" component={TextShimmer} />
         <Route path="/pg" component={Playground} />
       </main>
     </div>
@@ -30,6 +34,8 @@ const Home = () => (
       <PageLink text="QLOCKTWO clock" link="/qlocktwo-clock" />
       <PageLink text="Home dock for HTC HD2" link="/htc-hd2-home-dock" />
       <PageLink text="Ticker" link="/ticker" />
+      <PageLink text="BB10 Text Transition" link="/bb10-text-transition" />
+      <PageLink text="Text Shimmer" link="/text-shimmer" />
     </main>
   </>
 );

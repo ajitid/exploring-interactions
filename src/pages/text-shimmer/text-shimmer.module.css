@@ -1,0 +1,40 @@
+.body {
+  font-weight: 700;
+  background: #2c2c2f;
+  background-image: url(https://images.unsplash.com/photo-1437435409766-a478cc6da81a);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.heading {
+  margin: 32px 0 0 44px;
+  font-size: 48px;
+  color: #f3f4f6;
+  opacity: 0.8;
+  text-shadow: 1px 3px #1f293766;
+  display: inline-block;
+}
+
+@keyframes anim-mask {
+  from {
+    mask-position: 100%;
+  }
+
+  to {
+    mask-position: 0%;
+  }
+}
+
+.heading {
+  mask-image: linear-gradient(110deg, rgba(0, 0, 0, 0.7) 40%, black 50%, rgba(0, 0, 0, 0.7) 60%);
+  mask-size: 300%;
+  animation: anim-mask 2s ease infinite;
+}
+
+/* 
+Increase in `mask-image` requires increase in `mask-size`.
+So for example, if you change `mask-image` percentages from rgba(..., 0.7) 40%/60% to rgba(..., 0.7) 30%/80%, you would need to increase mask size to 700% to make the transition cover the whole text.
+
+`mask-size` can't be 100%, because if it is, it can't be animated.
+Try using `mask-size: 30%; mask-repeat: no-repeat;` to understand why.
+*/
