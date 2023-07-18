@@ -6,6 +6,7 @@ import { TickerPage } from "./ticker";
 import { BB10TextTransition } from "./bb10-text-transition/bb10-text-transition";
 import { TextShimmer } from "./text-shimmer/text-shimmer";
 import { SegmentedControlDemo } from "./segment-control";
+import { IndicateMoreTextByFade } from "./indicate-more-text-by-fade/indicate-more-text-by-fade";
 
 export function App() {
   return (
@@ -20,6 +21,7 @@ export function App() {
         <Route path="/bb10-text-transition" component={BB10TextTransition} />
         <Route path="/text-shimmer" component={TextShimmer} />
         <Route path="/segmented-control" component={SegmentedControlDemo} />
+        <Route path="/indicate-more-text-by-fade" component={IndicateMoreTextByFade} />
         <Route path="/pg" component={Playground} />
       </main>
     </div>
@@ -42,8 +44,8 @@ const Home = () => (
       <PageLink
         text="Using fade to indicate there's more text"
         link="/indicate-more-text-by-fade"
-        // see code blocks in your posts
       />
+      <PageLink text="Image outside bounds" link="/image-outside-bounds" />
       <PageLink
         text="Slide+crossfade"
         link="/slide+crossfade"

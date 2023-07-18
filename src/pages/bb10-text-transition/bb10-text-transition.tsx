@@ -68,6 +68,7 @@ export const BB10TextTransition = () => {
           className="overflow-hidden mt-6"
         >
           <div className="inline-block whitespace-nowrap" ref={titleRef}>
+            {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
             {texts[textIndex]!.title}
           </div>
         </motion.div>
@@ -77,7 +78,8 @@ export const BB10TextTransition = () => {
           transition={springConfig}
         >
           <div className="inline-block whitespace-nowrap" ref={infoRef}>
-            {texts[textIndex].info}
+            {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
+            {texts[textIndex]!.info}
           </div>
         </motion.div>
       </div>

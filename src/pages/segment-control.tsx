@@ -11,6 +11,9 @@
 // https://m3.material.io/components/segmented-buttons/overview
 // https://developer.apple.com/design/human-interface-guidelines/segmented-controls
 
+// Related: note that we didn't require a refmap (mulitple refs) in this file, but if we did, we could track them using this way:
+// https://github.com/pmndrs/react-spring/blob/main/demo/src/sandboxes/notification-hub/src/App.tsx#L31
+
 import { cloneElement, useState, Children } from "react";
 import cn from "clsx";
 import { ReactElement } from "react";
@@ -50,9 +53,6 @@ interface SegmentedControlProps {
 
 const SegmentedControl = (props: SegmentedControlProps) => {
   // find the selected button so we can attach ref to it
-  //
-  // note that we didn't require a refmap (mulitple refs) here, but we did, we could track them using this way:
-  // https://github.com/pmndrs/react-spring/blob/main/demo/src/sandboxes/notification-hub/src/App.tsx#L31
   const selectedRef = useRef<HTMLLIElement>(null);
   const selectedIndex = Children.toArray(props.children).findIndex((child) => {
     const typedChild = child as unknown as ReactElement<SegmentedControlButtonProps>;

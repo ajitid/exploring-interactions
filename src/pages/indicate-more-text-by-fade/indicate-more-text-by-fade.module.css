@@ -1,0 +1,13 @@
+.code-block {
+  @apply my-2 rounded overflow-hidden bg-white text-base;
+}
+
+.code-block pre {
+  @apply overflow-auto;
+  mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
+  scrollbar-width: thin;
+}
+
+.code-block code {
+  @apply inline-block px-4 py-3;
+}
