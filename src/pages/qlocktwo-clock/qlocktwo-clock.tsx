@@ -19,7 +19,7 @@ export const QlocktwoClock = () => {
   const { hrsChars, minsChars, discreteMins } = getTime();
 
   return (
-    <div className="min-h-screen bg-black grid place-items-center pb-4">
+    <div className="min-h-screen bg-black flex flex-center pb-4">
       <div>
         <div className="flex justify-between">
           <DiscreteMinsDot visible={discreteMins >= 1} />

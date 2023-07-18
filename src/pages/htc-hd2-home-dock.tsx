@@ -101,7 +101,7 @@ export const HtcHd2HomeDock = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black grid place-items-center">
+    <div className="min-h-screen bg-black flex flex-center">
       <div
         className={cn(
           "bg-pink-100 rounded relative overflow-hidden h-[686px]",
@@ -138,7 +138,7 @@ export const HtcHd2HomeDock = () => {
         </motion.div>
         <motion.div
           className={cn(
-            "absolute bottom-0 bg-pink-200 h-20 rounded-t grid place-items-center",
+            "absolute bottom-0 bg-pink-200 h-20 rounded-t flex flex-center",
             scrubWidthClassname
           )}
           style={{ x: scrubX }}

@@ -5,6 +5,7 @@ import { Playground } from "./playground";
 import { TickerPage } from "./ticker";
 import { BB10TextTransition } from "./bb10-text-transition/bb10-text-transition";
 import { TextShimmer } from "./text-shimmer/text-shimmer";
+import { SegmentedControlDemo } from "./segment-control";
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
         <Route path="/ticker" component={TickerPage} />
         <Route path="/bb10-text-transition" component={BB10TextTransition} />
         <Route path="/text-shimmer" component={TextShimmer} />
+        <Route path="/segmented-control" component={SegmentedControlDemo} />
         <Route path="/pg" component={Playground} />
       </main>
     </div>
@@ -34,8 +36,20 @@ const Home = () => (
       <PageLink text="QLOCKTWO clock" link="/qlocktwo-clock" />
       <PageLink text="Home dock for HTC HD2" link="/htc-hd2-home-dock" />
       <PageLink text="Ticker" link="/ticker" />
-      <PageLink text="BB10 Text Transition" link="/bb10-text-transition" />
-      <PageLink text="Text Shimmer" link="/text-shimmer" />
+      <PageLink text="BB10 text transition" link="/bb10-text-transition" />
+      <PageLink text="Text shimmer" link="/text-shimmer" />
+      <PageLink text="Segmented control" link="/segmented-control" />
+      <PageLink
+        text="Using fade to indicate there's more text"
+        link="/indicate-more-text-by-fade"
+        // see code blocks in your posts
+      />
+      <PageLink
+        text="Slide+crossfade"
+        link="/slide+crossfade"
+        // https://stripe.com/en-in/payments/checkout
+        // not nav menu, but submenu's tranisition within each one
+      />
     </main>
   </>
 );
