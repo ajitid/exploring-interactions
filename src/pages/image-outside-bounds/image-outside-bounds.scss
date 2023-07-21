@@ -1,0 +1,23 @@
+.image-outside-bounds {
+  @apply min-h-screen bg-zinc-950 flex flex-center;
+
+  .card {
+    padding: 32px;
+    @apply max-w-sm bg-white rounded-lg;
+  }
+
+  .stretched-out {
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  p,
+  img {
+    @apply mb-4;
+  }
+}

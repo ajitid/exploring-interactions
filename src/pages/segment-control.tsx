@@ -1,11 +1,13 @@
-// segmented control that can accept any combo of bg/fg and bg-highlight/fg-highlight color
+// segmented control that can accept any combo of bg/fg and bg-accent/fg-accent color
 // from: https://twitter.com/samselikoff/status/1649428055390035970?s=20
 // and https://twitter.com/raunofreiberg/status/1649440795357851648?s=20
 
 // mine one doesn't work properly in Firefox (Chrome and Safari are fine)
 // - initial alignment for the right side is wrong
 // - clips off the corner radius at right side
-// However, segemented control in "Built for global customers" under https://stripe.com/en-in/payments/checkout#:~:text=Built%20for%20global%20customers
+// - (all browsers:) because it fixes left and right clip bounds based on text size of each SegmentedControlButton, zooming in and out breaks the UI
+// However, segemented control in "Built for global customers" under
+// https://stripe.com/en-in/payments/checkout#:~:text=Built%20for%20global%20customers
 // does work properly in Firefox. Investigate this.
 
 // https://m3.material.io/components/segmented-buttons/overview
@@ -14,16 +16,20 @@
 // Related: note that we didn't require a refmap (mulitple refs) in this file, but if we did, we could track them using this way:
 // https://github.com/pmndrs/react-spring/blob/main/demo/src/sandboxes/notification-hub/src/App.tsx#L31
 
-import { cloneElement, useState, Children } from "react";
+import {
+  cloneElement,
+  useState,
+  Children,
+  ReactElement,
+  useRef,
+  forwardRef,
+  useEffect,
+  ReactNode,
+} from "react";
 import cn from "clsx";
-import { ReactElement } from "react";
-import { useRef } from "react";
-import { forwardRef } from "react";
-import { useEffect } from "react";
 import { animate, motion } from "framer-motion";
 import { useMotionValue } from "framer-motion";
 import { useMotionTemplate } from "framer-motion";
-import { ReactNode } from "react";
 
 const buttons = ["World", "N. Y.", "Business", "Arts", "Science"];
 
@@ -77,7 +83,7 @@ const SegmentedControl = (props: SegmentedControlProps) => {
     const typedChild = child as unknown as ReactElement<SegmentedControlButtonProps>;
 
     return cloneElement(typedChild, {
-      className: "bg-[unset] text-[unset] hover:bg-[unset]",
+      className: "bg-[unset] hover:bg-[unset]",
       ...(selectedIndex === idx && {
         ref: selectedRef,
       }),
@@ -113,6 +119,7 @@ const SegmentedControlButton = forwardRef<HTMLLIElement, SegmentedControlButtonP
         className={cn(
           "cursor-pointer font-semibold px-5 py-1 rounded-full min-w-[8ch] flex flex-center",
           "hover:bg-zinc-900",
+          props.selected && "bg-zinc-900",
           props.className
         )}
       >

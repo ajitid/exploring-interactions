@@ -1,4 +1,4 @@
-import { Link, Route } from "wouter";
+import { Link, Route, RouteProps } from "wouter";
 import { HtcHd2HomeDock } from "./htc-hd2-home-dock";
 import { QlocktwoClock } from "./qlocktwo-clock/qlocktwo-clock";
 import { Playground } from "./playground";
@@ -7,59 +7,71 @@ import { BB10TextTransition } from "./bb10-text-transition/bb10-text-transition"
 import { TextShimmer } from "./text-shimmer/text-shimmer";
 import { SegmentedControlDemo } from "./segment-control";
 import { IndicateMoreTextByFade } from "./indicate-more-text-by-fade/indicate-more-text-by-fade";
+import { ImageOutsideBounds } from "./image-outside-bounds/image-outside-bounds";
+import { ReactElement } from "react";
 
 export function App() {
+  const { pageLinks, routes } = useLinks([
+    { path: "/pg", component: Playground, name: "" },
+    {
+      path: "/qlocktwo-clock",
+      component: QlocktwoClock,
+      name: "QLOCKTWO clock",
+    },
+    { path: "/htc-hd2-home-dock", component: HtcHd2HomeDock, name: "Home dock for HTC HD2" },
+    { path: "/ticker", component: TickerPage, name: "Ticker" },
+    { path: "/bb10-text-transition", component: BB10TextTransition, name: "BB10 text transition" },
+    { path: "/text-shimmer", component: TextShimmer, name: "Text shimmer" },
+    { path: "/segmented-control", component: SegmentedControlDemo, name: "Segmented control" },
+    {
+      path: "/indicate-more-text-by-fade",
+      component: IndicateMoreTextByFade,
+      name: "Using fade to indicate there's more text",
+    },
+    { path: "/image-outside-bounds", component: ImageOutsideBounds, name: "Image outside bounds" },
+  ]);
+
   return (
     <div
       className="min-h-screen antialiased break-words font-sans lining-nums" /* any global text or bg color here */
     >
-      <Route path="/" component={Home} />
-      <main>
-        <Route path="/qlocktwo-clock" component={QlocktwoClock} />
-        <Route path="/htc-hd2-home-dock" component={HtcHd2HomeDock} />
-        <Route path="/ticker" component={TickerPage} />
-        <Route path="/bb10-text-transition" component={BB10TextTransition} />
-        <Route path="/text-shimmer" component={TextShimmer} />
-        <Route path="/segmented-control" component={SegmentedControlDemo} />
-        <Route path="/indicate-more-text-by-fade" component={IndicateMoreTextByFade} />
-        <Route path="/pg" component={Playground} />
-      </main>
+      <Route path="/" component={() => <Home pageLinks={pageLinks} />} />
+      <main>{routes}</main>
     </div>
   );
 }
 
-const Home = () => (
-  <>
-    <header>
-      <h1 className="font-mono text-3xl">exploring interactions</h1>
+interface HomeProps {
+  pageLinks: ReactElement<PageLinkProps>[];
+}
+
+const Home = (props: HomeProps) => (
+  <div className="container mx-auto py-4">
+    <header className="mb-4">
+      <h1 className="text-4xl font-light">Exploring Interfaces</h1>
     </header>
 
-    <main>
-      <PageLink text="QLOCKTWO clock" link="/qlocktwo-clock" />
-      <PageLink text="Home dock for HTC HD2" link="/htc-hd2-home-dock" />
-      <PageLink text="Ticker" link="/ticker" />
-      <PageLink text="BB10 text transition" link="/bb10-text-transition" />
-      <PageLink text="Text shimmer" link="/text-shimmer" />
-      <PageLink text="Segmented control" link="/segmented-control" />
-      <PageLink
-        text="Using fade to indicate there's more text"
-        link="/indicate-more-text-by-fade"
-      />
-      <PageLink text="Image outside bounds" link="/image-outside-bounds" />
-      <PageLink
-        text="Slide+crossfade"
-        link="/slide+crossfade"
-        // https://stripe.com/en-in/payments/checkout
-        // not nav menu, but submenu's tranisition within each one
-      />
-    </main>
-  </>
+    <main>{props.pageLinks}</main>
+  </div>
 );
 
-const PageLink = (props: { text: string; link: string }) => (
-  <>
-    <Link to={props.link}>
-      <a className="text-blue-700 block">{props.text}</a>
-    </Link>
-  </>
+interface PageLinkProps {
+  children: string;
+  link: string;
+}
+
+const PageLink = (props: PageLinkProps) => (
+  <Link to={props.link}>
+    <a className="text-blue-700 block font-medium">{props.children}</a>
+  </Link>
 );
+
+const useLinks = (items: { path: string; name: string; component: RouteProps["component"] }[]) => {
+  const pageLinks: ReactElement<PageLinkProps>[] = items.map((item) => (
+    <PageLink key={item.path} link={item.path} children={item.name} />
+  ));
+  const routes = items.map((item) => (
+    <Route key={item.path} path={item.path} component={item.component} />
+  ));
+  return { pageLinks, routes };
+};
