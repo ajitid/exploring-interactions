@@ -13,6 +13,7 @@ import {
 } from "framer-motion";
 import { forwardRef, useLayoutEffect, useState, useRef } from "react";
 import useMeasure from "react-use-measure";
+import { useWindowSize } from "../shared/utils";
 
 export const TickerPage = () => {
   return (
@@ -111,19 +112,6 @@ const Ticker = <T extends HTMLElement = HTMLElement>({
     </div>
   );
 };
-
-function useWindowSize() {
-  const [size, setSize] = useState<[width: number, height: number]>([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
-}
 
 const Text = forwardRef<HTMLDivElement>((_, ref) => {
   return (

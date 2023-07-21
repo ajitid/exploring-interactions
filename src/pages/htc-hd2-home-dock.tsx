@@ -21,7 +21,7 @@ import {
   WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
 
-import { snap } from "../petha/snap";
+import { snap } from "../shared/petha/snap";
 
 const icons = [
   HomeIcon,

@@ -37,7 +37,7 @@ export const SegmentedControlDemo = () => {
   const [selected, setSelected] = useState(0);
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-center flex-col pb-16">
+    <div className="min-h-screen bg-black text-white flex flex-center flex-col pb-16 text-lg">
       <SegmentedControl>
         {buttons.map((title, idx) => (
           <SegmentedControlButton
@@ -68,6 +68,7 @@ const SegmentedControl = (props: SegmentedControlProps) => {
   const leftMV = useMotionValue(0);
   const rightMV = useMotionValue(0);
   const clipPath = useMotionTemplate`inset(0px ${rightMV}px 0px ${leftMV}px round 9999px)`;
+
   useEffect(() => {
     const selected = selectedRef.current;
     const parent = selected?.offsetParent ?? null;
@@ -112,13 +113,17 @@ interface SegmentedControlButtonProps {
 const SegmentedControlButton = forwardRef<HTMLLIElement, SegmentedControlButtonProps>(
   (props, ref) => {
     return (
-      // these better be html `button`
+      // this better be html `button`
       <li
         ref={ref}
         onClick={props.onClick}
         className={cn(
           "cursor-pointer font-semibold px-5 py-1 rounded-full min-w-[8ch] flex flex-center",
           "hover:bg-zinc-900",
+          // If you move the cursor around while the blue clipped strip is
+          // animating or (in firefox) if blue clipped strip starts to cover the
+          // button behind, the button behind loses hover and thus lose the hover
+          // class. That's why we need to put this condition:
           props.selected && "bg-zinc-900",
           props.className
         )}

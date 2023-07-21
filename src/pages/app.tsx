@@ -5,7 +5,7 @@ import { Playground } from "./playground";
 import { TickerPage } from "./ticker";
 import { BB10TextTransition } from "./bb10-text-transition/bb10-text-transition";
 import { TextShimmer } from "./text-shimmer/text-shimmer";
-import { SegmentedControlDemo } from "./segment-control";
+import { SegmentedControlDemo } from "./segmented-control";
 import { IndicateMoreTextByFade } from "./indicate-more-text-by-fade/indicate-more-text-by-fade";
 import { ImageOutsideBounds } from "./image-outside-bounds/image-outside-bounds";
 import { ReactElement } from "react";
