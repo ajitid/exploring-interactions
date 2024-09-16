@@ -9,6 +9,7 @@ import { SegmentedControlDemo } from "./segmented-control";
 import { IndicateMoreTextByFade } from "./indicate-more-text-by-fade/indicate-more-text-by-fade";
 import { ImageOutsideBounds } from "./image-outside-bounds/image-outside-bounds";
 import { ReactElement } from "react";
+import { StripeMenu } from "./stripe-menu";
 
 export function App() {
   const { pageLinks, routes } = useLinks([
@@ -29,6 +30,14 @@ export function App() {
       name: "Using fade to indicate there's more text",
     },
     { path: "/image-outside-bounds", component: ImageOutsideBounds, name: "Image outside bounds" },
+    // TODO starts here →
+    // cascade
+    { path: "/stripe-menu", component: StripeMenu, name: "Stripe Menu" },
+    // flex shrink josh cameau
+    // zoom utils austin marbela onetab, https://twitter.com/julianlehr/status/1673416294845100033, 2d interface - that cartoon like sujith asked and that noodle guy chinese paul one
+    // rotating grid austin marbela
+    // https://www.youtube.com/watch?v=HvKCMYVuvRM&t=316s
+    // blur + zoom + mask to reveal bubbly like (or svg filter stuff could do this?)
   ]);
 
   return (
